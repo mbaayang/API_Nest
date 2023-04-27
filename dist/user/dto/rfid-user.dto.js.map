@@ -1,1 +1,0 @@
-{"version":3,"file":"rfid-user.dto.js","sourceRoot":"","sources":["../../../src/user/dto/rfid-user.dto.ts"],"names":[],"mappings":";;;;;;;;;AAAA,+CAA0C;AAC1C,uDAAgD;AAChD,uDAAkD;AAG3C,IAAM,OAAO,GAAb,MAAM,OAAQ,SAAQ,IAAA,uBAAQ,EAAC,+BAAa,EAAE,CAAC,MAAM,CAAU,CAAC;CAAG,CAAA;AAA7D,OAAO;IADnB,IAAA,iBAAM,GAAE;GACI,OAAO,CAAsD;AAA7D,0BAAO"}
