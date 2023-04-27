@@ -22,10 +22,10 @@ import { Logger } from '@nestjs/common';
 export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
   constructor(private readonly authService: AuthService, private schedulerRegistry: SchedulerRegistry){}
 
-  private port = serialService.getPort();
+ /*  private port = serialService.getPort();
 
   private parser = serialService.getParser();
-
+ */
   @WebSocketServer()
   public server: Server;
 
@@ -34,7 +34,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: string,
   ): any {
-    serialService.writeToPort('1' );
+    //serialService.writeToPort('1' );
   }
 
   @SubscribeMessage('arrosage_off')
@@ -42,7 +42,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: string,
   ): any {
-    serialService.writeToPort('0');
+    //serialService.writeToPort('0');
   }
 
   @SubscribeMessage('toit_ouvert')
@@ -50,7 +50,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: string,
   ): any {
-    serialService.writeToPort('o');
+    //serialService.writeToPort('o');
   }
 
   @SubscribeMessage('toit_ferme')
@@ -58,7 +58,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @ConnectedSocket() client: Socket,
     @MessageBody() payload: string,
   ): any {
-    serialService.writeToPort('f');
+    //serialService.writeToPort('f');
   }
 
   /*@SubscribeMessage('port_status')
@@ -78,7 +78,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
   checkPortStatus(@ConnectedSocket() client: Socket) {
     const logger = new Logger(AuthGateway.name);
     
-    if (!this.port.isOpen) {
+   /*  if (!this.port.isOpen) {
         this.port.open((err) => {
           if (err && err.message !== 'Port is already open') {
             this.server.emit('systeme_off', err.message);
@@ -90,12 +90,12 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
         });
     } else {
       this.server.emit('systeme_on', 'Port ouvert');
-    }
+    } */
   }
 
   handleConnection(@ConnectedSocket() client: Socket, ...args: any[]): any {
     client.emit('hello', 'Hello client!');
-    this.parser.on('data', (data) => {
+    /* this.parser.on('data', (data) => {
       const values = data.split('/');
       let pompe = parseFloat(values[4]);
       let toit = parseFloat(values[5]);
@@ -113,12 +113,12 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
         this.parser.on('data', (data) => {
           pompe = parseFloat(data.split('/')[4]);
         });
-      }
-
+      } */
+/* 
       client.emit('pompe_status', pompe);
       client.emit('toit_status', toit);
       client.emit('fan_status', fan);
-    });
+    }); */
     /*if (!this.port.isOpen) {
       setInterval(() => {
         this.port.open((err) => {
@@ -132,7 +132,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
       }, 1000);
     }*/
 
-    this.parser.on('data', (data) => {
+    /* this.parser.on('data', (data) => {
       const values = data.split('/');
       const rfid = values[7];
       
@@ -141,7 +141,7 @@ export class AuthGateway implements OnGatewayConnection, OnGatewayDisconnect {
           client.emit('auth', res);
         });
       }
-    });
+    }); */
   }
 
   handleDisconnect(@ConnectedSocket() client: any): any {

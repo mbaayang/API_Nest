@@ -19,13 +19,13 @@ export class ClimatService implements OnGatewayConnection {
   constructor(
     @InjectModel(Climat.name) private ClimatSchema: Model<ClimatDocument>,
   ) {
-    this.port = serialService.getPort();
+   /*  this.port = serialService.getPort();
     console.log(this.port.isOpen);
-    this.parser = serialService.getParser();
+    this.parser = serialService.getParser(); */
   }
 
   async handleConnection(client: socketio.Socket, ...args: any[]) {
-    this.parser.on('data', (data) => {
+    /*this.parser.on('data', (data) => {
       const values = data.split('/');
       console.log(values);
       const temperature = parseFloat(values[0]);
@@ -63,7 +63,7 @@ export class ClimatService implements OnGatewayConnection {
           }
         }
       }
-    });
+    }); */
   }
   //Calcule de la moyenne des valeurs
   async aggregateValues(): Promise<any> {
